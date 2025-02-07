@@ -1,0 +1,125 @@
+/* * {
+  outline: 1px solid red;
+} */
+
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  color: #fef7ee;
+  background-color: #111315;
+}
+
+.container {
+  width: 1000px; /* Fixed width for the container */
+  max-width: 100%; /* Ensure it doesn't overflow the viewport */
+  margin: 50px auto 0 auto;
+  padding: 2%;
+  background-color: #1b1d1f;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list_heading {
+  text-align: center;
+  margin-bottom: 0.25rem;
+  font-size: 2rem;
+  font-family: "DM Sans", serif;
+}
+
+.coffee-listing {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
+  margin: 10px 72px 72px 72px;
+}
+
+.list_description {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1rem;
+  color: #6f757c;
+  margin-bottom: 0.25rem;
+}
+
+.list_filters {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.clickable {
+  cursor: pointer;
+  background-color: #4d5562;
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+.coffee_item {
+  grid-column: span 4; /* Each item will span 4 columns */
+  width: 100%;
+  position: relative;
+}
+
+.list_picture {
+  border-radius: 8px;
+}
+
+.coffee_name {
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+}
+
+.coffee_details {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem 0;
+}
+
+.coffee_price {
+  font-size: 0.75rem;
+  background-color: #bee3cc;
+  color: #111315;
+  padding: 3px 5px;
+  border-radius: 3px;
+  height: 15px;
+  align-self: flex-end;
+}
+
+.coffee_rating {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.rating {
+  font-size: 0.65rem;
+}
+
+.votes {
+  font-size: 0.65rem;
+  color: #6f757c;
+}
+
+.list_popular {
+  font-size: 0.65rem;
+  color: #1b1d1f;
+  background-color: #f6c768;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding: 3px 5px;
+  border-radius: 15px;
+}
+
+.list_available {
+  font-size: 0.65rem;
+  color: #ed735d;
+  margin-left: auto;
+}

@@ -1,41 +1,34 @@
-import { useEffect, useState } from "react";
-import { fetchCoffeeData } from "./apiService";
+export async function fetchCoffeeData() {
+  try {
+    const response = await fetch(
+      "https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/heads/main/4-frontend-libaries/challenges/group_1/data/simple-coffee-listing-data.json"
+    );
 
-export const CoffeeCard = () => {
-  const [coffeeData, setCoffeeData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function getData() {
-      try {
-        const data = await fetchCoffeeData();
-        if (data) setCoffeeData(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
+    if (!response.ok) {
+      throw new Error("Couldn't connect to the endpoint");
     }
-    getData();
-  }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
 
-  return (
-    <>
-      {coffeeData.map((coffee) => (
-        <div key={coffee.id}>{coffee.name}</div>
-      ))}
-    </>
-  );
-};
-// useEffect(() => {
-//   async function getData() {
-//     const data = await fetchCoffeeData();
-//     if (data) setCoffeeData(data);
-//   }
-
-//   getData();
-// }, []);
+// fetch(
+//     "https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/heads/main/4-frontend-libaries/challenges/group_1/data/simple-coffee-listing-data.json"
+//   )
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error("coudnt connect to the endpoint");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       if (!data) {
+//         throw new Error("no data to read!");
+//       }
+//       console.log(data);
+//     })
+//     .catch((error) => console.error(error));

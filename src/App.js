@@ -1,9 +1,11 @@
-import { CoffeeCard } from "./CoffeeCard";
+// import { CoffeeCard } from "./CoffeeCard";
+import { CoffeeListing } from "./CoffeeListing";
 
 function App() {
   return (
     <div className="App">
-      <CoffeeCard />
+      {/* <CoffeeCard /> */}
+      <CoffeeListing />
     </div>
   );
 }
