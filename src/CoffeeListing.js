@@ -8,15 +8,17 @@ import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 export const CoffeeListing = () => {
   const [coffeeData, setCoffeeData] = useState([]);
+  const [originalCoffeeData, setOriginalCoffeeData] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  console.log(coffeeData);
 
   useEffect(() => {
     async function getData() {
       try {
         const data = await fetchCoffeeData();
         if (data) setCoffeeData(data);
+        setOriginalCoffeeData(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -25,6 +27,19 @@ export const CoffeeListing = () => {
     }
     getData();
   }, []);
+
+  const handleAllProductsButton = () => {
+    setSelectedFilter("all");
+    setCoffeeData(originalCoffeeData);
+  };
+
+  const handleAvailableButton = () => {
+    setSelectedFilter("available");
+    const availableCoffee = originalCoffeeData.filter(
+      (coffee) => coffee.available
+    );
+    setCoffeeData(availableCoffee);
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -42,8 +57,20 @@ export const CoffeeListing = () => {
             batches and shipped fresh weekly.
           </p>
           <section className="list_filters">
-            <p className="clickable">All Products</p>
-            <p className="clickable">Available Now</p>
+            <p
+              className={`filter ${selectedFilter === "all" ? "selected" : ""}`}
+              onClick={handleAllProductsButton}
+            >
+              All Products
+            </p>
+            <p
+              className={`filter ${
+                selectedFilter === "available" ? "selected" : ""
+              }`}
+              onClick={handleAvailableButton}
+            >
+              Available Now
+            </p>
           </section>
         </header>
         <div className="coffee-listing">

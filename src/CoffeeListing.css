@@ -51,11 +51,17 @@ body {
   gap: 16px;
 }
 
-.clickable {
+.filter {
   cursor: pointer;
-  background-color: #4d5562;
+  /* background-color: #4d5562; */
   border-radius: 8px;
   padding: 5px 10px;
+  /* transition: background 0.3s; */
+}
+
+.filter.selected {
+  background-color: #4d5562;
+  color: white;
 }
 
 .coffee_item {
@@ -93,8 +99,8 @@ body {
   display: flex;
   gap: 0.25rem;
   align-items: center;
-  justify-content: space-between;
-  position: relative;
+  /* justify-content: space-between;
+  position: relative; */
   width: 100%;
 }
 
@@ -121,5 +127,7 @@ body {
 .list_available {
   font-size: 0.65rem;
   color: #ed735d;
-  margin-left: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
