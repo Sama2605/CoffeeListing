@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { fetchCoffeeData } from "./apiServic";
 import "./CoffeeListing.css";
-import CoffeeItem from "./CoffeeItem";
+import CoffeeCard from "./CoffeeCard";
 import CoffeeFilter from "./CofeeFilter";
 
 export const CoffeeListing = () => {
@@ -11,6 +11,7 @@ export const CoffeeListing = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [coffeeSelected, setCoffeeSelected] = useState(null);
 
   useEffect(() => {
     async function getData() {
@@ -38,12 +39,16 @@ export const CoffeeListing = () => {
     }
   };
 
+  const handleSelectedCoffe = (coffee) => {
+    setCoffeeSelected(coffee);
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <>
-      <div className="container">
+      <div className={`container ${coffeeSelected ? "blurred" : ""}`}>
         <header>
           <h1 className="list_heading">Our Collection</h1>
           <p className="list_description">
@@ -58,12 +63,28 @@ export const CoffeeListing = () => {
           selectedFilter={selectedFilter}
           handleFilter={handleFilter}
         />
+
         <div className="coffee-listing">
           {coffeeData.map((coffee) => (
-            <CoffeeItem key={coffee.id} coffee={coffee} />
+            <CoffeeCard
+              key={coffee.id}
+              coffee={coffee}
+              onClick={() => handleSelectedCoffe(coffee)}
+            />
           ))}
         </div>
       </div>
+      {coffeeSelected && (
+        <div className="modal_overlay">
+          <div className="card_view">
+            <CoffeeCard
+              coffee={coffeeSelected}
+              viewType="card"
+              onClick={() => setCoffeeSelected(null)}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };

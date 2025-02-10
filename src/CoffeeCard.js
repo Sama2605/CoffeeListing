@@ -1,34 +1,45 @@
-export async function fetchCoffeeData() {
-  try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/heads/main/4-frontend-libaries/challenges/group_1/data/simple-coffee-listing-data.json"
-    );
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
-    if (!response.ok) {
-      throw new Error("Couldn't connect to the endpoint");
-    }
+const CoffeeItem = ({ coffee, onClick, viewType }) => {
+  return (
+    <div
+      key={coffee.id}
+      className={`coffee_item ${viewType === "card" ? "card_views" : ""}`}
+      onClick={onClick}
+    >
+      {coffee.popular ? <div className="list_popular">Popular</div> : null}
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
+      <img src={coffee.image} alt={coffee.name} className="list_picture" />
 
-// fetch(
-//     "https://raw.githubusercontent.com/devchallenges-io/curriculum/refs/heads/main/4-frontend-libaries/challenges/group_1/data/simple-coffee-listing-data.json"
-//   )
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error("coudnt connect to the endpoint");
-//       }
-//       return response.json();
-//     })
-//     .then((data) => {
-//       if (!data) {
-//         throw new Error("no data to read!");
-//       }
-//       console.log(data);
-//     })
-//     .catch((error) => console.error(error));
+      <section className="coffee_details">
+        <div className="coffee_name">{coffee.name}</div>
+        <div className="coffee_price">{coffee.price}</div>
+      </section>
+
+      <section className="coffee_rating">
+        <FontAwesomeIcon
+          icon={coffee.votes > 0 ? faStarSolid : faStarRegular}
+          style={{
+            color: coffee.votes > 0 ? "#F6C768" : "#6f757c",
+            fontSize: "15px",
+          }}
+        />
+        <div className="rating">{coffee.rating}</div>
+        <div className="votes">
+          {coffee.votes > 0 ? `(${coffee.votes} votes)` : "No ratings"}
+        </div>
+        {!coffee.available && <div className="list_available">Sold out</div>}
+      </section>
+
+      {viewType === "card" && (
+        <button className="card_button" onClick={() => onClick(null)}>
+          Close
+        </button>
+      )}
+    </div>
+  );
+};
+
+export default CoffeeItem;

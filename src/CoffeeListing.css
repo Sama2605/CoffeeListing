@@ -1,13 +1,10 @@
-/* * {
-  outline: 1px solid red;
-} */
-
 html {
   font-size: 16px; /* 1rem = 16px */
 }
 
 body {
   font-family: "DM Sans", sans-serif;
+  font-weight: 700;
   font-size: 1rem;
   color: #fef7ee;
   background-color: #111315;
@@ -15,7 +12,7 @@ body {
 
 .container {
   width: 1000px; /* Fixed width for the container */
-  max-width: 100%; /* Ensure it doesn't overflow the viewport */
+  max-width: 100%;
   margin: 50px auto 0 auto;
   padding: 2%;
   background-color: #1b1d1f;
@@ -68,6 +65,7 @@ body {
 .coffee_item {
   width: 100%;
   position: relative;
+  cursor: pointer;
 }
 
 .list_picture {
@@ -128,4 +126,40 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+/*CoffeeCard.css */
+
+.blurred {
+  filter: blur(5px);
+}
+
+.card_view {
+  width: 30%;
+  background: #1b1d1f;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+  padding: 30px;
+}
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.card_button {
+  padding: 5px 20px;
+  border: none;
+  background-color: #fef7ee;
+  color: #1b1d1f;
+  border-radius: 8px;
 }
