@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { fetchCoffeeData } from "./apiServic";
-import "./CoffeeListing.css";
-import CoffeeCard from "./CoffeeCard";
-import CoffeeFilter from "./CofeeFilter";
+import { fetchCoffeeData } from "../apiServic";
+import "../CoffeeListing.css";
+import CoffeeCard from "../components/CoffeeCard";
+import Header from "../components/Header";
+import CoffeeFilter from "../components/CofeeFilter";
 
 export const CoffeeListing = () => {
   const [coffeeData, setCoffeeData] = useState([]);
@@ -28,7 +29,7 @@ export const CoffeeListing = () => {
     getData();
   }, []);
 
-  const handleFilter = (filter) => {
+  const handleFilterChange = (filter) => {
     if (selectedFilter !== filter) {
       setSelectedFilter(filter);
       setCoffeeData(
@@ -39,9 +40,11 @@ export const CoffeeListing = () => {
     }
   };
 
-  const handleSelectedCoffe = (coffee) => {
+  const handleSelectCoffe = (coffee) => {
     setCoffeeSelected(coffee);
   };
+
+  const handleCloseModal = () => setCoffeeSelected(null);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -49,19 +52,11 @@ export const CoffeeListing = () => {
   return (
     <>
       <div className={`container ${coffeeSelected ? "blurred" : ""}`}>
-        <header>
-          <h1 className="list_heading">Our Collection</h1>
-          <p className="list_description">
-            Introducing our Coffee Collection, a selection of unique coffees
-            <br />
-            from different roast types and origins, expertly roasted in small
-            <br />
-            batches and shipped fresh weekly.
-          </p>
-        </header>
+        <Header />
+
         <CoffeeFilter
           selectedFilter={selectedFilter}
-          handleFilter={handleFilter}
+          handleFilterChange={handleFilterChange}
         />
 
         <div className="coffee-listing">
@@ -69,7 +64,7 @@ export const CoffeeListing = () => {
             <CoffeeCard
               key={coffee.id}
               coffee={coffee}
-              onClick={() => handleSelectedCoffe(coffee)}
+              onClick={() => handleSelectCoffe(coffee)}
             />
           ))}
         </div>
@@ -80,7 +75,7 @@ export const CoffeeListing = () => {
             <CoffeeCard
               coffee={coffeeSelected}
               viewType="card"
-              onClick={() => setCoffeeSelected(null)}
+              onClick={() => handleCloseModal(null)}
             />
           </div>
         </div>

@@ -1,10 +1,8 @@
-// import { CoffeeCard } from "./CoffeeCard";
-import { CoffeeListing } from "./CoffeeListing";
+import { CoffeeListing } from "./pages/CoffeeListing";
 
 function App() {
   return (
     <div className="App">
-      {/* <CoffeeCard /> */}
       <CoffeeListing />
     </div>
   );

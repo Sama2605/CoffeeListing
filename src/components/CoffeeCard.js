@@ -3,34 +3,38 @@ import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
 
 const CoffeeItem = ({ coffee, onClick, viewType }) => {
+  const { id, name, price, rating, votes, available, popular, image } = coffee;
+  const starIcon = votes > 0 ? faStarSolid : faStarRegular;
+  const starColor = votes > 0 ? "#F6C768" : "#6f757c";
+
   return (
     <div
-      key={coffee.id}
+      key={id}
       className={`coffee_item ${viewType === "card" ? "card_views" : ""}`}
       onClick={onClick}
     >
-      {coffee.popular ? <div className="list_popular">Popular</div> : null}
+      {popular ? <div className="list_popular">Popular</div> : null}
 
-      <img src={coffee.image} alt={coffee.name} className="list_picture" />
+      <img src={image} alt={name} className="list_picture" loading="lazy" />
 
       <section className="coffee_details">
-        <div className="coffee_name">{coffee.name}</div>
-        <div className="coffee_price">{coffee.price}</div>
+        <div className="coffee_name">{name}</div>
+        <div className="coffee_price">{price}</div>
       </section>
 
       <section className="coffee_rating">
         <FontAwesomeIcon
-          icon={coffee.votes > 0 ? faStarSolid : faStarRegular}
+          icon={starIcon}
           style={{
-            color: coffee.votes > 0 ? "#F6C768" : "#6f757c",
+            color: starColor,
             fontSize: "15px",
           }}
         />
-        <div className="rating">{coffee.rating}</div>
+        <div className="rating">{rating}</div>
         <div className="votes">
-          {coffee.votes > 0 ? `(${coffee.votes} votes)` : "No ratings"}
+          {votes > 0 ? `(${votes} votes)` : "No ratings"}
         </div>
-        {!coffee.available && <div className="list_available">Sold out</div>}
+        {!available && <div className="list_available">Sold out</div>}
       </section>
 
       {viewType === "card" && (

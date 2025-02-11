@@ -1,11 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+}
+
 html {
   font-size: 16px; /* 1rem = 16px */
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
   font-weight: 700;
-  font-size: 1rem;
   color: #fef7ee;
   background-color: #111315;
 }
@@ -13,7 +17,7 @@ body {
 .container {
   width: 1000px; /* Fixed width for the container */
   max-width: 100%;
-  margin: 50px auto 0 auto;
+  margin: 200px auto 50px auto;
   padding: 2%;
   background-color: #1b1d1f;
   border-radius: 8px;
@@ -32,6 +36,14 @@ body {
   font-size: 1rem;
   color: #6f757c;
   margin-bottom: 0.25rem;
+}
+
+.heading_container {
+  background-image: url("./assets/vector.svg");
+  background-repeat: no-repeat;
+  background-position: 70% 50%;
+  padding: 2rem 0;
+  background-size: 20%;
 }
 
 .list_filters {
@@ -126,6 +138,18 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.bg-cafe_image {
+  width: 100%;
+  position: absolute; /* Places the image behind text */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  object-fit: cover; /* Ensures the image covers the container */
+  z-index: -1; /* Pushes the image behind the text */
+  opacity: 0.5;
 }
 
 /*CoffeeCard.css */
