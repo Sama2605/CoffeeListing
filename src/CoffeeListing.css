@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
 }
 
@@ -85,6 +86,8 @@ body {
   width: 100%;
   aspect-ratio: 3/2;
   object-fit: cover;
+  aspect-ratio: 3/2;
+  object-fit: cover;
 }
 
 .coffee_name {
@@ -119,6 +122,8 @@ body {
 }
 
 .votes {
+  font-size: 0.75rem;
+  color: #a7abb0;
   font-size: 0.75rem;
   color: #a7abb0;
 }
