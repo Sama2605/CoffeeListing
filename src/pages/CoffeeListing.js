@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { fetchCoffeeData } from "../apiServic";
 import "../CoffeeListing.css";
 import CoffeeCard from "../components/CoffeeCard";
-import Header from "../components/Header";
 import CoffeeFilter from "../components/CofeeFilter";
+import Introduction from "../components/Introduction";
 
 export const CoffeeListing = () => {
   const [coffeeData, setCoffeeData] = useState([]);
@@ -52,7 +52,7 @@ export const CoffeeListing = () => {
   return (
     <>
       <div className={`container ${coffeeSelected ? "blurred" : ""}`}>
-        <Header />
+        <Introduction />
 
         <CoffeeFilter
           selectedFilter={selectedFilter}

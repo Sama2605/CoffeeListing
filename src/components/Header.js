@@ -16,16 +16,6 @@ const Header = () => {
           sizes="(max-width: 800px) 500px, (max-width: 1600px) 1000px, 1920px"
           alt="woman drinking coffee in cafe"
         />
-        <div className="heading_container">
-          <h1 className="list_heading">Our Collection</h1>
-          <p className="list_description">
-            Introducing our Coffee Collection, a selection of unique coffees
-            <br />
-            from different roast types and origins, expertly roasted in small
-            <br />
-            batches and shipped fresh weekly.
-          </p>
-        </div>
       </header>
     </>
   );
